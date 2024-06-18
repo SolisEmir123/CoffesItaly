@@ -16,10 +16,10 @@ public class UserDao {
         DbOperations.setDataorDelete(query, "Registrado correctamente, espera aprovacion");         
     }
     
-    public static User login(String email, String password) {
+    public static User login(String name, String password) {
         User user = null;
         try {
-            ResultSet rs = DbOperations.getData("select *from user where email='"+email+"' and password='"+password+"'");
+            ResultSet rs = DbOperations.getData("select *from user where name='"+name+"' and password='"+password+"'");
             while(rs.next()) {
                 user = new User();
                 user.setStatus(rs.getString("status"));
