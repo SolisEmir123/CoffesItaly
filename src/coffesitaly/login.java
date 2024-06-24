@@ -12,6 +12,8 @@ import model.User;
  */
 public class login extends javax.swing.JFrame {
     int xMouse, yMouse;
+        public String emailPattern = "^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
+
     /**
      * Creates new form login
      */
@@ -29,7 +31,7 @@ public class login extends javax.swing.JFrame {
     public void validateFields(){
         String name = txtName.getText();
         String password = txtPassword.getText();
-        if(!name.equals("") && !password.equals("")) {
+        if(name.matches(emailPattern) && !password.equals("")) {
             login.setEnabled(true);
             
         } else {
@@ -38,10 +40,10 @@ public class login extends javax.swing.JFrame {
     }
 
     public void login(){
-        String name = txtName.getText();
+        String email = txtName.getText();
         String password = txtPassword.getText();
         User user = null;
-        user = UserDao.login(name, password);
+        user = UserDao.login(email, password);
         if(user == null) {
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Contraseña o usuario incorrecto</b></html>","Message", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -53,7 +55,10 @@ public class login extends javax.swing.JFrame {
             }
             if(user.getStatus().equals("true")) {
                 setVisible(false);
-                new Home().setVisible(true);
+                Home home = new Home(email);
+                home.setExtendedState(this.MAXIMIZED_BOTH);
+                home.setLocationRelativeTo(null);
+                home.setVisible(true);
             }
         }
         
@@ -132,6 +137,7 @@ public class login extends javax.swing.JFrame {
         login.setForeground(new java.awt.Color(255, 255, 255));
         login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         login.setText("ENTRAR");
+        login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loginMouseClicked(evt);

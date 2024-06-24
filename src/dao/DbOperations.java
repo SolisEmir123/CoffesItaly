@@ -36,4 +36,13 @@ public class DbOperations {
             return null;
         }
     }
+public static ResultSet getDataWithParams(String query, String param) throws SQLException {
+        Connection con = ConnectionProvider.getCon();
+        if (con != null) {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, param);
+            return pst.executeQuery();
+        }
+        return null;
+    }
 }
