@@ -229,7 +229,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         jPanel6.add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Detalles del Vendedor");
+        jLabel5.setText("Detalles del Cliente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
